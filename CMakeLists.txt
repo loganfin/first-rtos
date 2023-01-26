@@ -31,6 +31,7 @@ pico_sdk_init()
 
 # check for valid FreeRTOS-Kernel installation
 if(NOT DEFINED PICO_SDK_FREERTOS_SOURCE)
+    # it may be located here
     if(EXISTS ${PICO_SDK_PATH}/../FreeRTOS-Kernel/CMakeLists.txt)
         set(PICO_SDK_FREERTOS_SOURCE ${PICO_SDK_PATH}/../FreeRTOS-Kernel)
     elseif(EXISTS ${CMAKE_SOURCE_DIR}/lib/FreeRTOS-Kernel/CMakeLists.txt)
