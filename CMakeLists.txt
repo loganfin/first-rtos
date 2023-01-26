@@ -17,9 +17,11 @@ else()
     if(EXISTS ${CMAKE_SOURCE_DIR}/lib/pico-sdk/pico_sdk_init.cmake)
         include(lib/pico-sdk/pico_sdk_init.cmake)
     else()
-        message(FATAL_ERROR "Path to pico-sdk source not found. Either provide the path with the -DPICO_SDK_PATH= option or run
-        git submodule update --init lib/pico-sdk
-        git -C lib/pico-sdk/ submodule update --init")
+        message(FATAL_ERROR "Path to pico-sdk source not found. Either provide the path to CMake with\n"
+        "   -DPICO_SDK_PATH=/path/to/dir\n"
+        "or run\n"
+        "   git submodule update --init lib/pico-sdk\n"
+        "   git -C lib/pico-sdk/ submodule update --init")
     endif()
 endif()
 
@@ -34,8 +36,10 @@ if(NOT DEFINED PICO_SDK_FREERTOS_SOURCE)
     elseif(EXISTS ${CMAKE_SOURCE_DIR}/lib/FreeRTOS-Kernel/CMakeLists.txt)
         set(PICO_SDK_FREERTOS_SOURCE ${CMAKE_SOURCE_DIR}/lib/FreeRTOS-Kernel)
     else()
-        message(FATAL_ERROR "Path to FreeRTOS source not found. Either provide the path with the -DPICO_SDK_FREERTOS_SOURCE= option or run
-        git submodule update --init lib/FreeRTOS-Kernel")
+        message(FATAL_ERROR "Path to FreeRTOS source not found. Either provide the path to CMake with\n"
+        "   -DPICO_SDK_FREERTOS_SOURCE=/path/to/dir\n"
+        "or run\n"
+        "   git submodule update --init lib/FreeRTOS-Kernel")
     endif()
     message(STATUS "Found FreeRTOS-Kernel at ${PICO_SDK_FREERTOS_SOURCE}")
 endif()
