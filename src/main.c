@@ -1,7 +1,34 @@
+#include <FreeRTOS.h>
+#include <task.h>
+#include <stdio.h>
 #include "pico/stdlib.h"
 
-#define LED_PIN PICO_DEFAULT_LED_PIN
+void task_1();
+void task_2();
 
 int main()
 {
+    stdio_init_all();
+
+    xTaskCreate(task_1, "Task_1", 256, NULL, 1, NULL);
+    xTaskCreate(task_2, "Task_2", 256, NULL, 1, NULL);
+    vTaskStartScheduler();
+
+    while(1){};
+}
+
+void task_1()
+{
+    while (true) {
+        printf("Hello from task 1\n");
+        vTaskDelay(200);
+    }
+}
+
+void task_2()
+{
+    while (true) {
+        printf("Hello from task 2\n");
+        vTaskDelay(200);
+    }
 }
